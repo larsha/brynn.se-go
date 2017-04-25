@@ -1,0 +1,10 @@
+version: '2'
+services:
+  assets:
+    build:
+      context: .
+      dockerfile: Dockerfile.assets
+    command: sass /scss/main.scss /css/style.css --style compressed --sourcemap=none
+    volumes:
+      - ./scss:/scss
+      - ./css:/css
