@@ -16,6 +16,9 @@ func Load() http.Handler {
 func routes() *httprouter.Router {
 	r := httprouter.New()
 
+	// Static
+	r.ServeFiles("/static/css/*filepath", http.Dir("static/css"))
+
 	// Set 404 handler
 	r.NotFound = http.HandlerFunc(controller.Error404)
 

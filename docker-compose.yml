@@ -4,7 +4,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.assets
-    command: sass /scss/main.scss /css/style.css --style compressed --sourcemap=none
+    command: sass /static/scss/main.scss /static/css/style.css --style compressed --sourcemap=none
     volumes:
-      - ./scss:/scss
-      - ./css:/css
+      - ./static/scss:/static/scss
+      - ./static/css:/static/css
