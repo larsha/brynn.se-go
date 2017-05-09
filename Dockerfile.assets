@@ -1,9 +1,0 @@
-FROM alpine:latest
-
-RUN apk update
-RUN apk upgrade
-RUN apk add sudo ruby-dev ruby ruby-bundler ruby-rdoc ruby-irb
-RUN sudo su -c "gem install sass"
-RUN rm -rf /var/cache/apk/*
-
-WORKDIR /assets

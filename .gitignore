@@ -23,7 +23,15 @@ _testmain.go
 *.test
 *.prof
 
+# Mac OS X
+.DS_Store
+
 # Build
 .build
-css
+static/js
+static/css
 .sass-cache
+node_modules
+
+# Devops
+devops

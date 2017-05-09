@@ -1,0 +1,41 @@
+{
+  "name": "brynn.se-go",
+  "version": "2.0.0",
+  "main": "ui/main.js",
+  "engines": {
+    "node": "latest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/larsha/brynn.se-go.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/larsha/brynn.se-go/issues"
+  },
+  "scripts": {
+    "build": "npm run js && npm run css & npm run postcss",
+    "css": "node-sass --output-style compressed ui/scss/main.scss static/css/style.bundle.css",
+    "postcss": "postcss static/css/style.bundle.css --use autoprefixer -d static/css",
+    "bundle": "webpack -p & npm run css",
+    "watch": "webpack -p -w & nodemon --watch ui/scss -e scss -x 'npm run css'"
+  },
+  "devDependencies": {
+    "autoprefixer": "7.0.1",
+    "babel-loader": "7.0.0",
+    "babel-polyfill": "6.23.0",
+    "babel-preset-env": "1.4.0",
+    "es6-promise": "4.1.0",
+    "exports-loader": "0.6.4",
+    "imports-loader": "0.7.1",
+    "node-sass": "4.5.2",
+    "nodemon": "1.11.0",
+    "postcss": "6.0.1",
+    "postcss-cli": "3.2.0",
+    "standard": "10.0.2",
+    "webpack": "2.5.1",
+    "whatwg-fetch": "2.0.3",
+    "babel-polyfill": "6.23.0"
+  }
+}

@@ -17,13 +17,16 @@ func routes() *httprouter.Router {
 	r := httprouter.New()
 
 	// Static
-	r.ServeFiles("/static/css/*filepath", http.Dir("static/css"))
+	r.ServeFiles("/static/*filepath", http.Dir("static"))
 
 	// Set 404 handler
 	r.NotFound = http.HandlerFunc(controller.Error404)
 
 	// Home page
 	r.GET("/", controller.IndexGET)
+
+	// Api
+	r.POST("/api/form", controller.FormPOST)
 
 	return r
 }
