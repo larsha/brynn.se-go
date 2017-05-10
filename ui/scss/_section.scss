@@ -5,7 +5,9 @@
   min-height: 100vh;
 
   &:first-child {
-    margin-top: 40px;
+    @media (min-width: $m-media) {
+      margin-top: 40px;
+    }
   }
 
   @media (min-width: $m-media) {
