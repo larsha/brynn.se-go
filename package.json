@@ -18,7 +18,7 @@
     "build": "npm run js && npm run css & npm run postcss",
     "css": "node-sass --output-style compressed ui/scss/main.scss static/css/style.bundle.css",
     "postcss": "postcss static/css/style.bundle.css --use autoprefixer -d static/css",
-    "bundle": "webpack -p & npm run css",
+    "bundle": "webpack -p && npm run css",
     "watch": "webpack -p -w & nodemon --watch ui/scss -e scss -x 'npm run css'"
   },
   "devDependencies": {

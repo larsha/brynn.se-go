@@ -5,21 +5,40 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
+
+	"github.com/larsha/brynn.se-go/app/shared/config"
 )
 
+type GlobalContext struct {
+	Production bool
+	Cachebust  string
+}
+
 type View struct {
-	Name         string
-	FileEnding   string
-	BasePath     string
-	BaseTemplate string
-	Context      interface{}
+	Name          string
+	FileEnding    string
+	BasePath      string
+	BaseTemplate  string
+	Context       interface{}
+	GlobalContext GlobalContext
+}
+
+type ViewContext struct {
+	Context interface{}
+	Globals GlobalContext
 }
 
 func New(req *http.Request) *View {
+	config := config.Get()
+
 	v := &View{
 		FileEnding:   ".html",
 		BaseTemplate: "base",
 		BasePath:     "./template",
+		GlobalContext: GlobalContext{
+			Production: config.Production,
+			Cachebust:  config.Cachebust,
+		},
 	}
 
 	return v
@@ -35,5 +54,10 @@ func (v *View) Render(w http.ResponseWriter) {
 		return
 	}
 
-	t.ExecuteTemplate(w, "base", v.Context)
+	view := &ViewContext{
+		v.Context,
+		v.GlobalContext,
+	}
+
+	t.ExecuteTemplate(w, "base", view)
 }

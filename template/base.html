@@ -3,7 +3,11 @@
 <html lang="en">
   <head>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,900">
-    <link rel="stylesheet" href="/static/css/style.bundle.css">
+    {{if .Globals.Production}}
+      <link rel="stylesheet" href="/static/css/style.bundle.{{.Globals.Cachebust}}.css">
+    {{else}}
+      <link rel="stylesheet" href="/static/css/style.bundle.css">
+    {{end}}
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="/static/img/favicon.png">
     <title>Software Developer in Stockholm</title>
@@ -11,7 +15,11 @@
   </head>
   <body>
     {{template "content" .}}
-    <script src="/static/js/main.bundle.js"></script>
+    {{if .Globals.Production}}
+      <script src="/static/js/main.bundle.{{.Globals.Cachebust}}.js"></script>
+    {{else}}
+      <script src="/static/js/main.bundle.js"></script>
+    {{end}}
   </body>
 </html>
 {{end}}
