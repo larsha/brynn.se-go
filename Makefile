@@ -1,7 +1,8 @@
 .PHONY: run gce_deploy_nginx gce_deploy_web
 
 run:
-	PORT=3000 go run main.go
+	export $$(cat .env | grep -v ^\# | xargs) && \
+	go run main.go
 
 # usage: make gce_deploy_nginx version=1.0.0
 gce_deploy_nginx:
