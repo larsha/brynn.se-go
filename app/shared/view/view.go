@@ -10,8 +10,9 @@ import (
 )
 
 type GlobalContext struct {
-	Production bool
-	Cachebust  string
+	StaticFolder string
+	Production   bool
+	Cachebust    string
 }
 
 type View struct {
@@ -36,8 +37,9 @@ func New(req *http.Request) *View {
 		BaseTemplate: "base",
 		BasePath:     "./template",
 		GlobalContext: GlobalContext{
-			Production: config.Production,
-			Cachebust:  config.Cachebust,
+			StaticFolder: config.StaticFolder,
+			Production:   config.Production,
+			Cachebust:    config.Cachebust,
 		},
 	}
 

@@ -5,6 +5,7 @@ import (
 
 	"github.com/larsha/brynn.se-go/app/controller"
 	"github.com/larsha/brynn.se-go/app/route/middleware/logrequest"
+	"github.com/larsha/brynn.se-go/app/shared/config"
 
 	"github.com/julienschmidt/httprouter"
 )
@@ -14,10 +15,11 @@ func Load() http.Handler {
 }
 
 func routes() *httprouter.Router {
+	config := config.Get()
 	r := httprouter.New()
 
 	// Static
-	r.ServeFiles("/static/*filepath", http.Dir("static"))
+	r.ServeFiles(config.StaticFolder+"/*filepath", http.Dir("static"))
 
 	// Set 404 handler
 	r.NotFound = http.HandlerFunc(controller.Error404)

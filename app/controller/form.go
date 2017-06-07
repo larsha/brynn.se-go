@@ -5,7 +5,8 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	"os"
+
+	"github.com/larsha/brynn.se-go/app/shared/config"
 
 	"github.com/julienschmidt/httprouter"
 	"gopkg.in/mailgun/mailgun-go.v1"
@@ -18,6 +19,7 @@ type FormData struct {
 
 // FormPOST
 func FormPOST(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+	config := config.Get()
 	decoder := json.NewDecoder(r.Body)
 	var d FormData
 	err := decoder.Decode(&d)
@@ -35,12 +37,16 @@ func FormPOST(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 		return
 	}
 
-	mg := mailgun.NewMailgun(os.Getenv("MAILGUN_DOMAIN"), os.Getenv("MAILGUN_API_KEY"), os.Getenv("MAILGUN_PUBLIC_API_KEY"))
+	mg := mailgun.NewMailgun(
+		config.Mailgun.Domain,
+		config.Mailgun.ApiKey,
+		config.Mailgun.PublicApiKey)
+
 	message := mailgun.NewMessage(
 		d.Email,
-		"Hello from brynn.se!",
+		config.Mailgun.Subject,
 		d.Message,
-		os.Getenv("MAILGUN_EMAIL"))
+		config.Mailgun.Email)
 
 	resp, id, err := mg.Send(message)
 

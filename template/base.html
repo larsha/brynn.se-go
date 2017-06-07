@@ -4,21 +4,21 @@
   <head>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,900">
     {{if .Globals.Production}}
-      <link rel="stylesheet" href="/static/css/style.bundle.{{.Globals.Cachebust}}.css">
+      <link rel="stylesheet" href="{{.Globals.StaticFolder}}/css/style.bundle.{{.Globals.Cachebust}}.css">
     {{else}}
-      <link rel="stylesheet" href="/static/css/style.bundle.css">
+      <link rel="stylesheet" href="{{.Globals.StaticFolder}}/css/style.bundle.css">
     {{end}}
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="/static/img/favicon.png">
+    <link rel="shortcut icon" href="{{.Globals.StaticFolder}}/img/favicon.png">
     <title>Software Developer in Stockholm</title>
     <meta name="description" content="I'm a freelancing software developer working and living in Stockholm, Sweden.">
   </head>
   <body>
     {{template "content" .}}
     {{if .Globals.Production}}
-      <script src="/static/js/main.bundle.{{.Globals.Cachebust}}.js"></script>
+      <script src="{{.Globals.StaticFolder}}/js/main.bundle.{{.Globals.Cachebust}}.js"></script>
     {{else}}
-      <script src="/static/js/main.bundle.js"></script>
+      <script src="{{.Globals.StaticFolder}}/js/main.bundle.js"></script>
     {{end}}
   </body>
 </html>
