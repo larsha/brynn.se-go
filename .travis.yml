@@ -25,6 +25,11 @@ env:
     - COMMIT=${TRAVIS_COMMIT::8}
 
 install:
+  - . $HOME/.nvm/nvm.sh
+  - nvm install latest
+  - nvm use latest
+  - npm install
+  - npm run build
   - go get
 
 script:
