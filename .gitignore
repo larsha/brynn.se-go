@@ -34,7 +34,7 @@ static/css
 node_modules
 
 # Devops
-devops
+devops/k8s
 
 # Env
 .env
