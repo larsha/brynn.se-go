@@ -22,6 +22,7 @@ env:
     - DOCKER_IMAGE_NAME=brynnse
     - K8S_NAMESPACE=brynnse
     - K8S_DEPLOYMENT_NAME=web
+    - COMMIT=${TRAVIS_COMMIT::8}
 
 install:
   - go get
