@@ -27,7 +27,10 @@ gcloud --quiet config set container/cluster $CLUSTER_NAME
 gcloud --quiet config set compute/zone ${CLOUDSDK_COMPUTE_ZONE}
 gcloud --quiet container clusters get-credentials $CLUSTER_NAME
 
-gcloud docker -- push $WEB_IMAGE:$COMMIT $WEB_IMAGE:latest $NGINX_IMAGE:$COMMIT $NGINX_IMAGE:latest
+gcloud docker -- push $WEB_IMAGE:$COMMIT
+gcloud docker -- push $WEB_IMAGE:latest
+gcloud docker -- push $NGINX_IMAGE:$COMMIT
+gcloud docker -- push $NGINX_IMAGE:latest
 
 kubectl config view
 kubectl config current-context
