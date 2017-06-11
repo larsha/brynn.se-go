@@ -1,0 +1,10 @@
+FROM node:latest
+
+ADD package.json /build/package.json
+RUN cd /build && npm install
+
+COPY . /build
+
+WORKDIR /build
+
+CMD ["npm", "run", "bundle"]

@@ -23,15 +23,13 @@ env:
     - K8S_NAMESPACE=brynnse
     - K8S_DEPLOYMENT_NAME=web
     - COMMIT=${TRAVIS_COMMIT::8}
-    - TRAVIS_NODE_VERSION=8
 
 install:
-  - rm -rf ~/.nvm && git clone https://github.com/creationix/nvm.git ~/.nvm && (cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`) && source ~/.nvm/nvm.sh && nvm install $TRAVIS_NODE_VERSION
-  - npm install
+  - docker build -t node -f Dockerfile.node .
+  - docker run -it -v `pwd`/static:/build/static node:latest
   - go get
 
 script:
-  - npm run build
   - go test
 
 before_deploy:
@@ -49,8 +47,8 @@ deploy:
       branch: master
 
 notifications:
-  email: false
-  slack:
+    email: false
     on_success: always
     on_failure: always
-    secure: v7zOSJySd1jqo9KtwErMNIJ92SF8s2S6dwLiLU2uweB4uJlujWdw2M1+MK0EAPCoKhw6pX2ycxdnX1p05TyXI0HZWdaVo1dD6MWKL8OO95OOtheZRe0BANybUQoeajxrXm5rxo6TPmoifY/y+RJDRpCatsw9LBpgEDbwKN9RkYPyoaftvX2Sqi/+BDQy4bwv+dy/1G9XSdZ+sGxAKkfhlPtOmB+JQuUp+CIerESJATz1wPzpwq4xp1+9izsI/zsXFqox+hxyM0erbP08tgDSjyiuM0PmJ2oEwnsPTqyTKz9l5slZ9WNmOim9Wr3CJs/X2f+vkS5ZlRzL5hhsYz7SyzvCpwhiAIx8XkA4a4KkB1tLoqFWxbSuDRKNhXlGCDFOXcRMMpME8fSQkS8vDMey5v2ZXuRP4WTq3iGUPN2uAhNplNkchNFly0U4FnLmVD8nC05YgPumxWm6Ak3UNL6UjLkp0CO0zLwj/CgiZCkq4kXMdc6/KOdtAGFWxUn7T3KkrWWAeYHt3JnlPF6VBsO3ll9gHGMOFmKaDEz77+MspfeaEn0fc2RU9HzUN4vdKa9kC1isTXnYiIAOUrVuzZix3YRnr3LqWu9fYW8Ec52w7XIfE17VWYg6Bsp6grTn0UV869u5a/6Am2YoVLFCMOZe7ZCumGiNcsp4AMG6WawXrAc=
+    slack:
+      secure: Ry3mrAbhhuVcchNvxEUDBwnBeLi6zCAB5uwI5V0FE+FOdQXiXYsBQPUx+IMjV4Dyyl421S1JLRvFiKDJgy+bJfmASrRQgnw0M/ecl9ZSU6inbUDOUFqf5A2wuvLF/2pt9Rnfj2ZlX65LZJHlTA1vCiAP3XNB/GIBXOIOL2jafKw4CVT/gkH2zVOg1naIbKePXxk3sLmK6afo4rKWJb/lm7mwyIGWTKaYtcaxI4trz9FNt59A50OWCi5EOQSAb12uWZjM9ZEu3G3RhqNC60VPuR29wLIxMyyRqRTCYy3m93vnct+hj6r0T2r/mHTVnhuc4R7j8R7qNcq4wEGhqnqFkyceYTxh5oU/tq84fQBu+tWapMnOQhK+uVq49vLozx944qUa9mNwTBq15f1xAhPr7cMMnbFmuACPl2PgBLL8j6SZdOoGtTnicbi4kMEbz/ZSOPgUVV3aUZaMmhSFSAaIAKucAJYAYdHuRQdU969C0qHwsOgEIrZi7ct+G9oDT+r7RafNCf+400JEydU8QJNt72+FnRiQ5ndWIExXELco40F4cA26T0NEu9DtbxydlxY4ROYJeDRMsxR7eplTfJSetBRe1hESQEF6TgJ7xSTdaFmR4YpPosqx4A4YfhUydEWEH3EAHzjDR5apsJJkeyFF86TEyF7v3jmly0699FJwN2c=
