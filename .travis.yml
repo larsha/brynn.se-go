@@ -26,13 +26,13 @@ env:
 
 install:
   - . $HOME/.nvm/nvm.sh
-  - nvm install latest
-  - nvm use latest
+  - nvm install node
+  - nvm use node
   - npm install
-  - npm run build
   - go get
 
 script:
+  - npm run build
   - go test
 
 before_deploy:
