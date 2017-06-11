@@ -3,7 +3,7 @@
   "version": "2.0.0",
   "main": "ui/main.js",
   "engines": {
-    "node": "latest"
+    "node": "8"
   },
   "repository": {
     "type": "git",

@@ -21,7 +21,8 @@ env:
     - CLOUDSDK_COMPUTE_ZONE=europe-west1-b
     - DOCKER_IMAGE_NAME=brynnse
     - K8S_NAMESPACE=brynnse
-    - K8S_DEPLOYMENT_NAME=web
+    - K8S_DEPLOYMENT_NAME_WEB=web
+    - K8S_DEPLOYMENT_NAME_NGINX=nginx
     - COMMIT=${TRAVIS_COMMIT::8}
 
 install:

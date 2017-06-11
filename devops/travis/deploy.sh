@@ -2,15 +2,22 @@
 
 set -e
 
-IMAGE=eu.gcr.io/${PROJECT_NAME}/${DOCKER_IMAGE_NAME}/${K8S_DEPLOYMENT_NAME}
-VERSION_IMAGE=$IMAGE:$COMMIT
-LATEST_IMAGE=$IMAGE:latest
+WEB_IMAGE=eu.gcr.io/${PROJECT_NAME}/${DOCKER_IMAGE_NAME}/${K8S_DEPLOYMENT_NAME_WEB}
+NGINX_IMAGE=eu.gcr.io/${PROJECT_NAME}/${DOCKER_IMAGE_NAME}/${K8S_DEPLOYMENT_NAME_NGINX}
 
+# Build web
 CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o .build/main .
 curl -o .build/ca-certificates.crt https://raw.githubusercontent.com/bagder/ca-bundle/master/ca-bundle.crt
 docker build --build-arg CACHEBUST=$COMMIT \
-  -t $VERSION_IMAGE \
+  -t $WEB_IMAGE:$COMMIT \
+  -t $WEB_IMAGE:latest \
   -f Dockerfile.web .
+
+# Build nginx
+docker build \
+  -t $NGINX_IMAGE:$COMMIT \
+  -t $NGINX_IMAGE:latest \
+  -f Dockerfile.nginx .
 
 echo $GCLOUD_SERVICE_KEY | base64 --decode -i > ${HOME}/gcloud-service-key.json
 gcloud auth activate-service-account --key-file ${HOME}/gcloud-service-key.json
@@ -20,11 +27,13 @@ gcloud --quiet config set container/cluster $CLUSTER_NAME
 gcloud --quiet config set compute/zone ${CLOUDSDK_COMPUTE_ZONE}
 gcloud --quiet container clusters get-credentials $CLUSTER_NAME
 
-gcloud docker -- push $VERSION_IMAGE
-
-yes | gcloud beta container images add-tag $VERSION_IMAGE $LATEST_IMAGE
+gcloud docker -- push $WEB_IMAGE:$COMMIT $WEB_IMAGE:latest $NGINX_IMAGE:$COMMIT $NGINX_IMAGE:latest
 
 kubectl config view
 kubectl config current-context
 
-kubectl -n ${K8S_NAMESPACE} set image deployment/${K8S_DEPLOYMENT_NAME} ${K8S_DEPLOYMENT_NAME}=$VERSION_IMAGE
+# Update web
+kubectl -n ${K8S_NAMESPACE} set image deployment/${K8S_DEPLOYMENT_NAME_WEB} ${K8S_DEPLOYMENT_NAME_WEB}=$WEB_IMAGE:$COMMIT
+
+# Update nginx
+kubectl -n ${K8S_NAMESPACE} set image deployment/${K8S_DEPLOYMENT_NAME_NGINX} ${K8S_DEPLOYMENT_NAME_NGINX}=$NGINX_IMAGE:$COMMIT
