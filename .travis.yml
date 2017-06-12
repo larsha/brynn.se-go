@@ -1,6 +1,10 @@
 # Use Dockerized infrastructure
 sudo: false
 
+language: go
+go:
+  - master
+
 # Cache Gcloud SDK between commands
 cache:
   directories:
@@ -20,36 +24,27 @@ env:
     - K8S_NAMESPACE=brynnse
     - K8S_DEPLOYMENT_NAME_WEB=web
     - K8S_DEPLOYMENT_NAME_NGINX=nginx
-    - COMMIT=${TRAVIS_COMMIT::7}
+    - COMMIT=${TRAVIS_COMMIT::8}
 
-jobs:
-  include:
-    - stage: unit tests
-      language: go
-      go:
-        - master
-      install: go get
-      script: go test
-    - stage: unit tests
-      language: node_js
-      node_js:
-        - "8"
-      install: npm install
-      script: npm run test
-    - stage: prepare assets
-      language: node_js
-      node_js:
-        - "8"
-      install: npm install
-      script: npm run bundle
-    - stage: deploy
-      before_deploy: ./devops/script/install-deploy-dependencies.sh
-      deploy:
-        - provider: script
-          script: ./devops/script/deploy.sh
-          skip_cleanup: true
-          on:
-            branch: master
+install:
+  - docker build -t node -f Dockerfile.node .
+  - go get
+
+script:
+  - docker run -it -v `pwd`/static:/build/static node:latest npm test
+  - go test
+
+before_deploy:
+  - docker run -it -v `pwd`/static:/build/static node:latest
+
+deploy:
+  - provider: script
+    script:
+      - ./devops/script/install-deploy-dependencies.sh
+      - ./devops/travis/deploy.sh
+    skip_cleanup: true
+    on:
+      branch: master
 
 notifications:
     email: false
