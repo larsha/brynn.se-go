@@ -5,7 +5,6 @@ language: go
 go:
   - master
 
-# Cache Gcloud SDK between commands
 cache:
   directories:
     - "$HOME/google-cloud-sdk/"
@@ -41,7 +40,7 @@ deploy:
   - provider: script
     script:
       - ./devops/script/install-deploy-dependencies.sh
-      - ./devops/travis/deploy.sh
+      - ./devops/script/deploy.sh
     skip_cleanup: true
     on:
       branch: master
