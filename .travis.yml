@@ -23,17 +23,19 @@ env:
     - K8S_DEPLOYMENT_NAME_WEB=web
     - K8S_DEPLOYMENT_NAME_NGINX=nginx
     - COMMIT=${TRAVIS_COMMIT::7}
+    - TRAVIS_NODE_VERSION=8
 
 install:
-  - docker build -t node -f Dockerfile.node .
+  - nvm install $TRAVIS_NODE_VERSION
+  - npm install
   - go get
 
 script:
-  - docker run -it -v `pwd`/static:/build/static node:latest npm test
+  - npm test
   - go test
 
 before_deploy:
-  - docker run -it -v `pwd`/static:/build/static node:latest
+  - npm run bundle
 
 deploy:
   - provider: script
