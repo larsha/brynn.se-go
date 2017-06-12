@@ -1,6 +1,6 @@
 FROM node:8
 
-ADD package.json /build/package.json
+ADD package.json package-lock.json /build/
 RUN cd /build && npm install
 
 COPY . /build

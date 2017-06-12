@@ -15,6 +15,7 @@
     "url": "https://github.com/larsha/brynn.se-go/issues"
   },
   "scripts": {
+    "test": "echo \"Warning: no test specified\" && exit 0",
     "css": "node-sass --output-style compressed ui/scss/main.scss static/css/style.bundle.css",
     "postcss": "postcss static/css/style.bundle.css --use autoprefixer -d static/css",
     "bundle": "webpack -p && npm run css && npm run postcss",

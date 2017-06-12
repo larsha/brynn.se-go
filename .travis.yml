@@ -1,10 +1,6 @@
 # Use Dockerized infrastructure
 sudo: false
 
-language: go
-go:
-  - master
-
 # Cache Gcloud SDK between commands
 cache:
   directories:
@@ -13,9 +9,6 @@ cache:
 
 services:
   - docker
-
-before_install:
-  - go get
 
 env:
   global:
@@ -31,11 +24,24 @@ env:
 
 jobs:
   include:
-    - stage: unit test js
-      install: docker build -t node -f Dockerfile.node .
-      script: docker run -it -v `pwd`/static:/build/static node:latest
-    - stage: unit test go
+    - stage: unit tests
+      language: go
+      go:
+        - master
+      install: go get
       script: go test
+    - stage: unit tests
+      language: node_js
+      node_js:
+        - "8"
+      install: npm install
+      script: npm run test
+    - stage: prepare assets
+      language: node_js
+      node_js:
+        - "8"
+      install: npm install
+      script: npm run bundle
     - stage: deploy
       before_deploy: ./devops/script/install-deploy-dependencies.sh
       deploy:
