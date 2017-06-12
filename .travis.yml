@@ -15,7 +15,6 @@ services:
 
 env:
   global:
-    - GOOGLE_APPLICATION_CREDENTIALS=~/gcloud-service-key.json
     - PROJECT_NAME=brynn-145714
     - CLUSTER_NAME=cluster-1
     - CLOUDSDK_COMPUTE_ZONE=europe-west1-b
@@ -23,7 +22,7 @@ env:
     - K8S_NAMESPACE=brynnse
     - K8S_DEPLOYMENT_NAME_WEB=web
     - K8S_DEPLOYMENT_NAME_NGINX=nginx
-    - COMMIT=${TRAVIS_COMMIT::8}
+    - COMMIT=${TRAVIS_COMMIT::7}
 
 install:
   - docker build -t node -f Dockerfile.node .
