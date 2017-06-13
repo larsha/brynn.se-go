@@ -16,6 +16,6 @@ type Index struct {
 func IndexGET(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	v := view.New(r)
 	v.Name = "index/page"
-	v.Context = &Index{Title: "Hello"}
+	v.Context = Index{Title: "Hello"}
 	v.Render(w)
 }

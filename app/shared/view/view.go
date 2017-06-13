@@ -56,7 +56,7 @@ func (v *View) Render(w http.ResponseWriter) {
 		return
 	}
 
-	view := &ViewContext{
+	view := ViewContext{
 		v.Context,
 		v.GlobalContext,
 	}

@@ -19,8 +19,8 @@ type Config struct {
 	Mailgun
 }
 
-func Get() *Config {
-	c := &Config{
+func Get() Config {
+	c := Config{
 		StaticFolder: "/static",
 		Production:   os.Getenv("APP_ENV") == "production",
 		Cachebust:    os.Getenv("CACHEBUST"),
