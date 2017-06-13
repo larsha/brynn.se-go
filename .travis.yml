@@ -23,10 +23,9 @@ env:
     - K8S_DEPLOYMENT_NAME_WEB=web
     - K8S_DEPLOYMENT_NAME_NGINX=nginx
     - COMMIT=${TRAVIS_COMMIT::7}
-    - TRAVIS_NODE_VERSION=8
 
 install:
-  - nvm install $TRAVIS_NODE_VERSION
+  - nvm install 8
   - npm install
   - go get
 
