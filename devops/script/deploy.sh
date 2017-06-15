@@ -27,7 +27,7 @@ curl -o .build/ca-certificates.crt https://raw.githubusercontent.com/bagder/ca-b
 docker build --build-arg CACHEBUST=$COMMIT \
   -t $WEB_IMAGE:$COMMIT \
   -t $WEB_IMAGE:latest \
-  -f Dockerfile.web .
+  -f Dockerfile.scratch .
 
 # Build nginx image
 docker build \

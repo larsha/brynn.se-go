@@ -1,0 +1,13 @@
+triggers:
+- pattens:
+  - '**/*.go'
+  - '**/*.html'
+  shell: true
+  cmd: go run main.go
+  delay: 100ms
+  stop_timeout: 1s
+  signal: "KILL"
+  kill_signal: "SIGTERM"
+watch_paths:
+- .
+watch_depth: 5

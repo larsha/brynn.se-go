@@ -1,0 +1,12 @@
+version: '2'
+services:
+  base:
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+    ports:
+      - "3000:3000"
+    env_file:
+      - web.env
+    volumes:
+      - .:/go/src/github.com/larsha/brynn.se-go

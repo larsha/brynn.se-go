@@ -37,4 +37,4 @@ node_modules
 devops/k8s
 
 # Env
-.env
+web.env
