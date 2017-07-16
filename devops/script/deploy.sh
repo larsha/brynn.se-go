@@ -7,9 +7,8 @@ curl -0 https://storage.googleapis.com/cloud-sdk-release/google-cloud-sdk-159.0.
 ${HOME}/google-cloud-sdk/install.sh
 source ${HOME}/google-cloud-sdk/path.bash.inc
 
-# Update gcloud components
-gcloud --quiet components update
-gcloud --quiet components update kubectl
+# Install kubectl
+gcloud --quiet components install kubectl
 
 # Auth with service account
 echo $GCLOUD_SERVICE_KEY | base64 --decode -i > ${HOME}/gcloud-service-key.json
