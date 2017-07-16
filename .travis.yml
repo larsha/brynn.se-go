@@ -1,8 +1,6 @@
 # Use Dockerized infrastructure
 sudo: false
 
-group: deprecated-2017Q3
-
 language: go
 go:
   - master

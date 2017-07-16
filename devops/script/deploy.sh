@@ -2,8 +2,10 @@
 
 set -e
 
-if [ ! -d "$HOME/google-cloud-sdk/bin" ]; then rm -rf $HOME/google-cloud-sdk; export CLOUDSDK_CORE_DISABLE_PROMPTS=1; curl https://sdk.cloud.google.com | bash; fi
-source /home/travis/google-cloud-sdk/path.bash.inc
+# Download and install Google Cloud SDK
+curl -0 https://storage.googleapis.com/cloud-sdk-release/google-cloud-sdk-159.0.0-linux-x86_64.tar.gz | tar -zx
+./google-cloud-sdk/install.sh
+./google-cloud-sdk/bin/gcloud init
 
 # Update gcloud components
 gcloud --quiet components update
