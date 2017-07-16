@@ -5,7 +5,7 @@ set -e
 # Download and install Google Cloud SDK
 curl -0 https://storage.googleapis.com/cloud-sdk-release/google-cloud-sdk-159.0.0-linux-x86_64.tar.gz | tar -zx
 ./google-cloud-sdk/install.sh
-./google-cloud-sdk/bin/gcloud init
+source /home/travis/google-cloud-sdk/path.bash.inc
 
 # Update gcloud components
 gcloud --quiet components update
