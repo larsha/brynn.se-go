@@ -33,8 +33,5 @@ static/css
 .sass-cache
 node_modules
 
-# Devops
-devops/k8s
-
 # Env
 web.env
