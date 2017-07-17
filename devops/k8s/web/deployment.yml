@@ -34,7 +34,7 @@ spec:
         imagePullPolicy: Always
         envFrom:
         - configMapRef:
-            name: web-config
+            name: web-v1
         ports:
         - containerPort: 3000
         readinessProbe:

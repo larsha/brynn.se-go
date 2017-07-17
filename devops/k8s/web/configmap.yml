@@ -1,7 +1,7 @@
 kind: ConfigMap
 apiVersion: v1
 metadata:
-  name: web-config
+  name: web-v1
   namespace: brynnse
 data:
   port: "3000"
