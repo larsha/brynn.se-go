@@ -12,6 +12,6 @@ class WebsiteTasks(TaskSet):
         self.client.get(url, verify=False)
 
 class WebsiteUser(HttpLocust):
-    task_set = WebsiteTasks
-    min_wait = 1000
+    min_wait = 2000
     max_wait = 5000
+    task_set = WebsiteTasks
