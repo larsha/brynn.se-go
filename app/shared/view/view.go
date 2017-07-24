@@ -22,6 +22,7 @@ type View struct {
 	BaseTemplate  string
 	Context       interface{}
 	GlobalContext GlobalContext
+	Status        int
 }
 
 type ViewContext struct {
@@ -51,6 +52,7 @@ func (v *View) Render(w http.ResponseWriter) {
 	tmpl := filepath.Join(cwd, v.BasePath, v.Name+v.FileEnding)
 	base := filepath.Join(cwd, v.BasePath, v.BaseTemplate+v.FileEnding)
 	t, err := template.ParseFiles(tmpl, base)
+
 	if err != nil {
 		http.Error(w, "Template File Error: "+err.Error(), http.StatusInternalServerError)
 		return
@@ -61,5 +63,10 @@ func (v *View) Render(w http.ResponseWriter) {
 		v.GlobalContext,
 	}
 
+	if v.Status == 0 {
+		v.Status = http.StatusOK
+	}
+
+	w.WriteHeader(v.Status)
 	t.ExecuteTemplate(w, "base", view)
 }

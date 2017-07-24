@@ -70,7 +70,7 @@ class Form {
 
 export default (() => {
   const form = document.querySelector('#form')
-  if (form.length > 0) {
+  if (form) {
     new Form(form);
   }
 })()
