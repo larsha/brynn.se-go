@@ -32,7 +32,7 @@ gsutil -m setmeta \
 
 # Build
 WEB_IMAGE=eu.gcr.io/${PROJECT_NAME}/${DOCKER_IMAGE_NAME}/${K8S_DEPLOYMENT_NAME_WEB}
-NGINX_IMAGE=eu.gcr.io/${PROJECT_NAME}/${DOCKER_IMAGE_NAME}/${K8S_DEPLOYMENT_NAME_NGINX}
+# NGINX_IMAGE=eu.gcr.io/${PROJECT_NAME}/${DOCKER_IMAGE_NAME}/${K8S_DEPLOYMENT_NAME_NGINX}
 
 # Build web image
 CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o .build/main .
@@ -43,20 +43,20 @@ docker build \
   -t $WEB_IMAGE:latest \
   -f Dockerfile.scratch .
 
-# Build nginx image
-docker build \
-  -t $NGINX_IMAGE:$COMMIT \
-  -t $NGINX_IMAGE:latest \
-  -f Dockerfile.nginx .
+# # Build nginx image
+# docker build \
+#   -t $NGINX_IMAGE:$COMMIT \
+#   -t $NGINX_IMAGE:latest \
+#   -f Dockerfile.nginx .
 
 # Push images
 gcloud docker -- push $WEB_IMAGE:$COMMIT
 gcloud docker -- push $WEB_IMAGE:latest
-gcloud docker -- push $NGINX_IMAGE:$COMMIT
-gcloud docker -- push $NGINX_IMAGE:latest
+# gcloud docker -- push $NGINX_IMAGE:$COMMIT
+# gcloud docker -- push $NGINX_IMAGE:latest
 
 # Update web
 kubectl -n ${K8S_NAMESPACE} set image deployment/${K8S_DEPLOYMENT_NAME_WEB} ${K8S_DEPLOYMENT_NAME_WEB}=$WEB_IMAGE:$COMMIT
 
-# Update nginx
-kubectl -n ${K8S_NAMESPACE} set image deployment/${K8S_DEPLOYMENT_NAME_NGINX} ${K8S_DEPLOYMENT_NAME_NGINX}=$NGINX_IMAGE:$COMMIT
+# # Update nginx
+# kubectl -n ${K8S_NAMESPACE} set image deployment/${K8S_DEPLOYMENT_NAME_NGINX} ${K8S_DEPLOYMENT_NAME_NGINX}=$NGINX_IMAGE:$COMMIT
