@@ -7,7 +7,6 @@ import (
 	"os/signal"
 	"sync"
 	"syscall"
-	"time"
 
 	"github.com/julienschmidt/httprouter"
 	"github.com/larsha/brynn.se-go/app/route"
@@ -78,6 +77,6 @@ func makePrestop(s *status) func(http.ResponseWriter, *http.Request, httprouter.
 		s.Unlock()
 
 		//can be useful when doing large scaling operations to give readyness probes time to update
-		time.Sleep(30 * time.Second)
+		// time.Sleep(30 * time.Second)
 	}
 }
