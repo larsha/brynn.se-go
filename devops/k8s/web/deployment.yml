@@ -32,37 +32,9 @@ spec:
       - name: web
         image: eu.gcr.io/brynn-145714/brynnse/web:latest
         imagePullPolicy: Always
-        env:
-          - name: APP_ENV
-            valueFrom:
-              configMapKeyRef:
-                name: web-v1
-                key: app_env
-          - name: PORT
-            valueFrom:
-              configMapKeyRef:
-                name: web-v1
-                key: port
-          - name: MAILGUN_EMAIL
-            valueFrom:
-              configMapKeyRef:
-                name: web-v1
-                key: mailgun_email
-          - name: MAILGUN_DOMAIN
-            valueFrom:
-              configMapKeyRef:
-                name: web-v1
-                key: mailgun_domain
-          - name: MAILGUN_API_KEY
-            valueFrom:
-              configMapKeyRef:
-                name: web-v1
-                key: mailgun_api_key
-          - name: MAILGUN_PUBLIC_API_KEY
-            valueFrom:
-              configMapKeyRef:
-                name: web-v1
-                key: mailgun_public_api_key
+        envFrom:
+        - configMapRef:
+            name: web-v2
         ports:
         - containerPort: 3000
         - containerPort: 3001
