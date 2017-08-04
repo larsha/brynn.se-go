@@ -37,7 +37,7 @@ script:
 
 deploy:
   - provider: script
-    script: ./devops/travis/deploy-web.sh
+    script: ./devops/travis/deploy.sh
     skip_cleanup: true
     on:
       branch: master
