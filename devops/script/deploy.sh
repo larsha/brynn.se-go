@@ -24,12 +24,12 @@ export BOTO_CONFIG=/dev/null
 
 # Assets
 npm run bundle
-gsutil -m rsync -r static/ gs://${BUCKET_NAME}/brynnse/${COMMIT}/static
+gsutil -m rsync -r static/ gs://${PROJECT_NAME}/brynnse/${COMMIT}/static
 
 gsutil -m setmeta \
   -h "Cache-Control:public, max-age=31536000" \
   -h "Content-Encoding: gzip" \
-  gs://${BUCKET_NAME}/brynnse/${COMMIT}/static/**
+  gs://${PROJECT_NAME}/brynnse/${COMMIT}/static/**
 
 # Build
 WEB_IMAGE=eu.gcr.io/${PROJECT_NAME}/${DOCKER_IMAGE_NAME}/${K8S_DEPLOYMENT_NAME_WEB}
