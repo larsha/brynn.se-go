@@ -78,6 +78,6 @@ func makePrestop(s *status) func(http.ResponseWriter, *http.Request, httprouter.
 		s.Unlock()
 
 		//can be useful when doing large scaling operations to give readyness probes time to update
-		time.Sleep(3 * time.Second)
+		time.Sleep(5 * time.Second)
 	}
 }
