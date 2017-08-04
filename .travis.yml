@@ -16,6 +16,7 @@ services:
 env:
   global:
     - PROJECT_NAME=brynn-145714
+    - STATIC=https://storage.googleapis.com/brynn-145714/brynnse
     - CLUSTER_NAME=cluster-1
     - CLOUDSDK_COMPUTE_ZONE=europe-west1-b
     - DOCKER_IMAGE_NAME=brynnse
@@ -33,9 +34,6 @@ install:
 script:
   - npm test
   - go test
-
-before_deploy:
-  - npm run bundle
 
 deploy:
   - provider: script

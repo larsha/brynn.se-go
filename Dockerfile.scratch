@@ -2,8 +2,8 @@ FROM scratch
 ADD . /
 ADD .build/main /
 ADD .build/ca-certificates.crt /etc/ssl/certs/
-ARG CACHEBUST=0
-ENV CACHEBUST ${CACHEBUST}
+ARG STATIC=0
+ENV STATIC ${STATIC}
 WORKDIR /
 
 CMD ["/main"]

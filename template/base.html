@@ -3,23 +3,15 @@
 <html lang="en">
   <head>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,900">
-    {{if .Globals.Production}}
-      <link rel="stylesheet" href="{{.Globals.StaticFolder}}/css/style.bundle.{{.Globals.Cachebust}}.css">
-    {{else}}
-      <link rel="stylesheet" href="{{.Globals.StaticFolder}}/css/style.bundle.css">
-    {{end}}
+    <link rel="stylesheet" href="{{.Globals.Static}}/css/style.bundle.css">
+    <link rel="shortcut icon" href="{{.Globals.Static}}/img/favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="{{.Globals.StaticFolder}}/img/favicon.png">
     <title>Software Developer in Stockholm</title>
     <meta name="description" content="I'm a freelancing software developer working and living in Stockholm, Sweden.">
   </head>
   <body>
     {{template "content" .}}
-    {{if .Globals.Production}}
-      <script src="{{.Globals.StaticFolder}}/js/main.bundle.{{.Globals.Cachebust}}.js"></script>
-    {{else}}
-      <script src="{{.Globals.StaticFolder}}/js/main.bundle.js"></script>
-    {{end}}
+    <script src="{{.Globals.Static}}/js/main.bundle.js"></script>
   </body>
 </html>
 {{end}}

@@ -18,8 +18,10 @@ func routes() *httprouter.Router {
 	config := config.Get()
 	r := httprouter.New()
 
-	// Static
-	r.ServeFiles(config.StaticFolder+"/*filepath", http.Dir("static"))
+	if config.Production == false {
+		// Static
+		r.ServeFiles(config.Static+"/*filepath", http.Dir("static"))
+	}
 
 	// Set 404 handler
 	r.NotFound = http.HandlerFunc(controller.Error404)

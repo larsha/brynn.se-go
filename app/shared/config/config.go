@@ -13,17 +13,15 @@ type Mailgun struct {
 }
 
 type Config struct {
-	StaticFolder string
-	Production   bool
-	Cachebust    string
+	Static     string
+	Production bool
 	Mailgun
 }
 
 func Get() Config {
 	c := Config{
-		StaticFolder: "/static",
-		Production:   os.Getenv("APP_ENV") == "production",
-		Cachebust:    os.Getenv("CACHEBUST"),
+		Static:     os.Getenv("STATIC"),
+		Production: os.Getenv("APP_ENV") == "production",
 		Mailgun: Mailgun{
 			Domain:       os.Getenv("MAILGUN_DOMAIN"),
 			ApiKey:       os.Getenv("MAILGUN_API_KEY"),

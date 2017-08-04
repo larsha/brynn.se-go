@@ -19,13 +19,24 @@ gcloud --quiet config set container/cluster $CLUSTER_NAME
 gcloud --quiet config set compute/zone ${CLOUDSDK_COMPUTE_ZONE}
 gcloud --quiet container clusters get-credentials $CLUSTER_NAME
 
+# Assets
+npm run bundle
+gsutil -m rsync -r static/ gs://${BUCKET_NAME}/brynnse/${COMMIT}/static
+
+gsutil -m setmeta \
+  -h "Cache-Control:public, max-age=31536000" \
+  -h "Content-Encoding: gzip" \
+  gs://${BUCKET_NAME}/brynnse/${COMMIT}/static/**
+
+# Build
 WEB_IMAGE=eu.gcr.io/${PROJECT_NAME}/${DOCKER_IMAGE_NAME}/${K8S_DEPLOYMENT_NAME_WEB}
 NGINX_IMAGE=eu.gcr.io/${PROJECT_NAME}/${DOCKER_IMAGE_NAME}/${K8S_DEPLOYMENT_NAME_NGINX}
 
 # Build web image
 CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o .build/main .
 curl -o .build/ca-certificates.crt https://raw.githubusercontent.com/bagder/ca-bundle/master/ca-bundle.crt
-docker build --build-arg CACHEBUST=$COMMIT \
+docker build \
+  --build-arg STATIC=${STATIC}/$COMMIT/static \
   -t $WEB_IMAGE:$COMMIT \
   -t $WEB_IMAGE:latest \
   -f Dockerfile.scratch .
