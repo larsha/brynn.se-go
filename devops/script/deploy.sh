@@ -19,6 +19,9 @@ gcloud --quiet config set container/cluster $CLUSTER_NAME
 gcloud --quiet config set compute/zone ${CLOUDSDK_COMPUTE_ZONE}
 gcloud --quiet container clusters get-credentials $CLUSTER_NAME
 
+# Fix for gsutil (https://github.com/travis-ci/travis-ci/issues/7940)
+export BOTO_CONFIG=/dev/null
+
 # Assets
 npm run bundle
 gsutil -m rsync -r static/ gs://${BUCKET_NAME}/brynnse/${COMMIT}/static
