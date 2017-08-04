@@ -24,11 +24,10 @@ export BOTO_CONFIG=/dev/null
 
 # Assets
 npm run bundle
-gsutil -m rsync -r static/ gs://${PROJECT_NAME}/brynnse/${COMMIT}/static
+gsutil -m cp -r -z js,css static gs://${PROJECT_NAME}/brynnse/${COMMIT}/static
 
 gsutil -m setmeta \
   -h "Cache-Control:public, max-age=31536000" \
-  -h "Content-Encoding: gzip" \
   gs://${PROJECT_NAME}/brynnse/${COMMIT}/static/**
 
 # Build
