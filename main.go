@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"net/http"
 	"os"
@@ -20,46 +21,45 @@ type status struct {
 
 func main() {
 	shutdown := make(chan int)
-
-	//create a notification channel to shutdown
 	sigChan := make(chan os.Signal, 1)
 
-	//start the main http server for serving traffic
+	// start the main http server for serving traffic
 	server := &http.Server{Addr: ":" + os.Getenv("PORT"), Handler: route.Load()}
 	go func() {
 		server.ListenAndServe()
 		shutdown <- 1
 	}()
 
-	//start the system server for health checks and shutdowns
+	// start the system server for health checks and shutdowns
 	s := &status{
 		ready: false,
 	}
 
 	hRouter := httprouter.New()
-	hRouter.GET("/ready", makeReady(s))
+	hRouter.GET("/ready", isReady(s))
 	hRouter.GET("/prestop", makePrestop(s))
 	go func() {
 		http.ListenAndServe(":3001", hRouter)
 	}()
 
-	//register for interupt (Ctrl+C) and SIGTERM (docker)
+	// register for interrupt (Ctrl+C) and SIGTERM (docker)
 	signal.Notify(sigChan, os.Interrupt, syscall.SIGTERM)
 	go func() {
 		<-sigChan
 		fmt.Println("Shutting down...")
-		server.Close()
+		server.Shutdown(context.Background())
 	}()
 
-	//move server to ready state
+	// server is ready to handle requests
 	s.Lock()
 	s.ready = true
 	s.Unlock()
 
 	<-shutdown
+	os.Exit(0)
 }
 
-func makeReady(s *status) func(http.ResponseWriter, *http.Request, httprouter.Params) {
+func isReady(s *status) func(http.ResponseWriter, *http.Request, httprouter.Params) {
 	return func(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 		s.RLock()
 		defer s.RUnlock()
