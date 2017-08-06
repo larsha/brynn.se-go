@@ -35,9 +35,9 @@ steps:
   args: ['build', '--build-arg', 'STATIC=https://storage.googleapis.com/$PROJECT_ID/brynnse/$REVISION_ID/static', '-t', 'eu.gcr.io/$PROJECT_ID/brynnse/web:$REVISION_ID', '-t', 'eu.gcr.io/$PROJECT_ID/brynnse/web:latest', '-f', 'Dockerfile.scratch', '.']
 
 - name: 'gcr.io/cloud-builders/gcloud'
-  args: ['docker', '--', 'push', 'eu.gcr.io/$PROJECT_ID/brynnse/web:$REVISION_ID']
+  args: ['gcloud', '--', 'push', 'eu.gcr.io/$PROJECT_ID/brynnse/web:$REVISION_ID']
 - name: 'gcr.io/cloud-builders/gcloud'
-  args: ['docker', '--', 'push', 'eu.gcr.io/$PROJECT_ID/brynnse/web:latest']
+  args: ['gcloud', '--', 'push', 'eu.gcr.io/$PROJECT_ID/brynnse/web:latest']
 
 - name: 'gcr.io/cloud-builders/kubectl'
   args: ['-n', 'brynnse', 'set', 'image', 'deployment/web', 'web=eu.gcr.io/$PROJECT_ID/brynnse/web:$REVISION_ID']
