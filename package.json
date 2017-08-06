@@ -16,7 +16,7 @@
   },
   "scripts": {
     "test": "echo \"Warning: no test specified\" && exit 0",
-    "css": "node-sass -x --output-style compressed ui/scss/main.scss static/css/style.bundle.css",
+    "css": "node-sass -x --source-map false --output-style compressed ui/scss/main.scss static/css/style.bundle.css",
     "postcss": "postcss static/css/style.bundle.css --use autoprefixer -d static/css",
     "bundle": "webpack -p && npm run css && npm run postcss",
     "watch": "webpack -p -w & nodemon --watch ui/scss -e scss -x 'npm run css'"
