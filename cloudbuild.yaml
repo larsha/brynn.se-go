@@ -17,6 +17,7 @@ steps:
 - name: 'gcr.io/cloud-builders/go'
   args: ['build', '-a', '-installsuffix', 'cgo', '-o', '.build/main', '.']
   env:
+  - 'GOPATH=.'
   - 'CGO_ENABLED=0'
   - 'GOOS=linux'
 
