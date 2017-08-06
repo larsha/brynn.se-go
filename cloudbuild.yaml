@@ -9,7 +9,7 @@ steps:
 - name: 'gcr.io/cloud-builders/gsutil'
   args: ['-m', 'cp', '-r', '-z', 'js,css', 'static', 'gs://$PROJECT_ID/brynnse/$REVISION_ID/static']
 - name: 'gcr.io/cloud-builders/gsutil'
-  args: ['-m', 'setmeta', '-h', '"Cache-Control:public, max-age=31536000"', 'gs://$PROJECT_ID/brynnse/$REVISION_ID/static/**']
+  args: ['-m', 'setmeta', '-h', '"cache-control:public, max-age=31536000"', 'gs://$PROJECT_ID/brynnse/$REVISION_ID/static/**']
 
 - name: 'gcr.io/cloud-builders/wget'
   args: ['-O', '.build/ca-certificates.crt', 'https://raw.githubusercontent.com/bagder/ca-bundle/master/ca-bundle.crt']
