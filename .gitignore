@@ -27,7 +27,8 @@ _testmain.go
 .DS_Store
 
 # Build
-.build
+main
+ca-certificates.crt
 static/js
 static/css
 .sass-cache
