@@ -4,7 +4,7 @@ steps:
 - name: 'gcr.io/cloud-builders/npm'
   args: ['test']
 - name: 'gcr.io/cloud-builders/npm'
-  args: ['npm', 'run', 'bundle']
+  args: ['run', 'bundle']
 
 - name: 'gcr.io/cloud-builders/gsutil'
   args: ['-m', 'cp', '-r', '-z', 'js,css', 'static', 'gs://$PROJECT_ID/brynnse/$REVISION_ID/static']
