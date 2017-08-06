@@ -2,8 +2,9 @@
 sudo: false
 
 language: go
+
 go:
-  - master
+  - 1.8.3
 
 cache:
   directories:
