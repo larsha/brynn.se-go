@@ -6,6 +6,14 @@ steps:
 - name: 'gcr.io/cloud-builders/npm'
   args: ['run', 'bundle']
 
+- name: 'gcr.io/cloud-builders/go'
+  args: ['get']
+  - 'GOPATH=.'
+
+- name: 'gcr.io/cloud-builders/go'
+  args: ['test']
+  - 'GOPATH=.'
+
 - name: 'gcr.io/cloud-builders/gsutil'
   args: ['-m', 'cp', '-r', '-z', 'js,css', 'static', 'gs://$PROJECT_ID/brynnse/$REVISION_ID/static']
 - name: 'gcr.io/cloud-builders/gsutil'
@@ -15,7 +23,7 @@ steps:
   args: ['-nd', '-O', 'ca-certificates.crt', 'https://raw.githubusercontent.com/bagder/ca-bundle/master/ca-bundle.crt']
 
 - name: 'gcr.io/cloud-builders/go'
-  args: ['build', '-a', '-installsuffix', 'cgo', '-o', '.build/main', '.']
+  args: ['build', '-a', '-installsuffix', 'cgo', '-o', 'main', '.']
   env:
   - 'GOPATH=.'
   - 'CGO_ENABLED=0'
