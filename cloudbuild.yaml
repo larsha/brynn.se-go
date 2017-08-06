@@ -9,12 +9,12 @@ steps:
 - name: 'gcr.io/cloud-builders/go'
   args: ['get']
   env:
-  - 'GOPATH=.'
+  - 'PROJECT_ROOT=.'
 
 - name: 'gcr.io/cloud-builders/go'
   args: ['test']
   env:
-  - 'GOPATH=.'
+  - 'PROJECT_ROOT=.'
 
 - name: 'gcr.io/cloud-builders/gsutil'
   args: ['-m', 'cp', '-r', '-z', 'js,css', 'static', 'gs://$PROJECT_ID/brynnse/$REVISION_ID/static']
@@ -27,7 +27,7 @@ steps:
 - name: 'gcr.io/cloud-builders/go'
   args: ['build', '-a', '-installsuffix', 'cgo', '-o', 'main', '.']
   env:
-  - 'GOPATH=.'
+  - 'PROJECT_ROOT=.'
   - 'CGO_ENABLED=0'
   - 'GOOS=linux'
 
