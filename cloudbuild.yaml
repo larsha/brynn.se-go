@@ -41,3 +41,6 @@ steps:
 
 - name: 'gcr.io/cloud-builders/kubectl'
   args: ['-n', 'brynnse', 'set', 'image', 'deployment/web', 'web=eu.gcr.io/$PROJECT_ID/brynnse/web:$REVISION_ID']
+  env:
+    - 'CLOUDSDK_COMPUTE_ZONE=europe-west1-b'
+    - 'CLOUDSDK_CONTAINER_CLUSTER=cluster-1'
