@@ -21,10 +21,7 @@ steps:
   - 'GOOS=linux'
 
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '--build-arg', 'STATIC=$STATIC/$REVISION_ID/static', '-t', '$REGISTRY:$REVISION_ID', '-t', '$REGISTRY:latest', '-f', 'Dockerfile.scratch', '.']
-  env:
-  - 'REGISTRY=eu.gcr.io/$PROJECT_ID/brynnse/web'
-  - 'STATIC=https://storage.googleapis.com/$PROJECT_ID/brynnse'
+  args: ['build', '--build-arg', 'STATIC=https://storage.googleapis.com/$PROJECT_ID/brynnse/$REVISION_ID/static', '-t', 'eu.gcr.io/$PROJECT_ID/brynnse/web:$REVISION_ID', '-t', 'eu.gcr.io/$PROJECT_ID/brynnse/web:latest', '-f', 'Dockerfile.scratch', '.']
 
 - name: 'gcr.io/cloud-builders/gcloud'
   args: ['docker', '--', 'push', 'eu.gcr.io/$PROJECT_ID/brynnse/web:$REVISION_ID']
