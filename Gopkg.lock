@@ -8,12 +8,6 @@
   version = "v1.1"
 
 [[projects]]
-  branch = "master"
-  name = "github.com/larsha/brynn.se-go"
-  packages = ["app/controller","app/route","app/route/middleware/logrequest","app/shared/config","app/shared/view"]
-  revision = "b4c7e50b1871cafb4c73ac77ea644fe6c6800729"
-
-[[projects]]
   name = "github.com/pkg/errors"
   packages = ["."]
   revision = "645ef00459ed84a119197bfb8d8205042c6df63d"
@@ -28,6 +22,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "3b1bd381ef84a44df15dd8095b3bba328105e6538e6a94f6533668abf9a7cca1"
+  inputs-digest = "ddf9ac60207306d91fe310db16ff026738eab985240fbb31e9c8cb84b813398d"
   solver-name = "gps-cdcl"
   solver-version = 1
