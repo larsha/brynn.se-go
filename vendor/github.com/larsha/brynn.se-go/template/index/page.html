@@ -1,0 +1,75 @@
+{{define "content"}}
+<div class="form-confirmation" id="form-confirmation">
+  <div class="form-confirmation__content">
+    <h1 class="form-confirmation__title" id="form-confirmation-message"></h1>
+  </div>
+</div>
+<div class="page">
+  <header class="header">
+    <div class="header__content">
+      <h1 class="header__title">{{.Context.Title}}</h1>
+    </div>
+  </header>
+  <main>
+    <section class="section">
+      <div class="section__item section__item--icon section__item--js"></div>
+      <div class="section__item section__item--text">
+        <p>I'm a self-employed software developer living and working in Stockholm, Sweden. I'm working with both backend and frontend and currently doing work in Node.js, Go, Python and PHP.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section__item section__item--text">
+        <p>I'm working with everything from UI to CI/CD. I'm all for microservice architecture and working with <a href="https://www.docker.com/" target="_blank">Docker</a>. For orchestration I'm happy to use <a href="https://kubernetes.io/" target="_blank">Kubernetes</a> on GCP.</p>
+      </div>
+      <div class="section__item section__item--icon section__item--code"></div>
+    </section>
+
+    <section class="section">
+      <div class="section__item section__item--icon section__item--document"></div>
+      <div class="section__item section__item--text">
+        <div>
+          <p>Happy to work with:</p>
+          <ul class="section__list">
+            <li><a href="https://www.docker.com/" target="_blank">Docker</a></li>
+            <li><a href="https://kubernetes.io/" target="_blank">Kubernetes</a></li>
+            <li><a href="https://nodejs.org/en/" target="_blank">Node.js</a></li>
+            <li><a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Language_Resources" target="_blank">ES6/ES7/ES8</a></li>
+            <li><a href="https://github.com/facebook/react" target="_blank">React</a></li>
+            <li><a href="http://fluxible.io/" target="_blank">Fluxible</a></li>
+            <li><a href="http://redux.js.org/docs/introduction/" target="_blank">Redux</a></li>
+            <li><a href="https://redis.io/" target="_blank">Redis</a></li>
+            <li><a href="https://www.mongodb.com/" target="_blank">MongoDB</a></li>
+            <li><a href="https://www.elastic.co/" target="_blank">ElasticSearch</a></li>
+            <li><a href="https://www.python.org/" target="_blank">Python</a></li>
+            <li><a href="https://www.heroku.com" target="_blank">Heroku</a></li>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5" target="_blank">HTML5</a></li>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS3" target="_blank">CSS3</a></li>
+            <li><a href="https://golang.org/" target="_blank">Go</a></li>
+            <li><a href="https://travis-ci.org" target="_blank">Travis</a></li>
+            <li><a href="https://jenkins.io/" target="_blank">Jenkins</a></li>
+          </ul>
+          <p>and more...</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">
+    <section class="footer__content">
+      <div class="footer__item">
+        <p>
+          Please don't hesitate to get in touch with me, I'm always open for a chat. You can of course also call me on 0733-73 09 41.<br><br>
+          You can also get in touch with me on <a href="https://github.com/larsha" target="_blank">GitHub</a> and <a href="https://www.linkedin.com/in/fredriklack/" target="_blank">LinkedIn</a>
+        </p>
+      </div>
+      <div class="footer__item">
+        <form method="post" action="/api/form" class="form" id="form">
+          <input type="email" class="form__input" placeholder="Your e-mail" id="email">
+          <textarea class="form__text" placeholder="Write a message" id="message"></textarea>
+          <button type="submit" class="form__button">Send</button>
+        </form>
+      </div>
+    </section>
+  </footer>
+</div>
+{{end}}

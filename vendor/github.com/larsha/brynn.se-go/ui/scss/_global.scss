@@ -1,0 +1,18 @@
+* {
+  box-sizing: border-box;
+}
+
+body.form-confirmation-open {
+  overflow: hidden;
+}
+
+.page {
+  position: relative;
+  background: $pure-white;
+  transform: translateX(0);
+  transition: transform .5s cubic-bezier(.47, .01, .11, .99);
+
+  .form-confirmation-open & {
+    transform: translateX(-100%);
+  }
+}

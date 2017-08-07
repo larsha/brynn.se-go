@@ -1,0 +1,82 @@
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 2.8rem;
+
+  @media (min-width: $s-media) {
+    font-size: 2.4rem;
+    line-height: 4rem;
+  }
+}
+
+p {
+  margin: 0;
+}
+
+b,
+strong {
+  font-weight: 900;
+}
+
+a {
+  background: $white;
+  color: $blue;
+  box-shadow: 0 0 0 5px $white;
+  text-decoration: none;
+  transition: all .1s ease-in-out;
+
+  &:active,
+  &:hover,
+  &:visited {
+    background: $white;
+    color: $blue;
+    box-shadow: 0 0 0 5px $white;
+  }
+
+  &:active,
+  &:hover {
+    background: $dark-blue;
+    color: $white;
+    box-shadow: 0 0 0 5px $dark-blue;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 900;
+}
+
+::selection {
+  background: $blue;
+  color: $white;
+}
+
+::-moz-selection {
+  background: $blue;
+  color: $white;
+}
+
+::-webkit-input-placeholder {
+  color: $gray;
+}
+
+::-moz-placeholder {
+  color: $gray;
+}
+
+:-ms-input-placeholder {
+  color: $gray;
+}
+
+:-moz-placeholder {
+  color: $gray;
+}

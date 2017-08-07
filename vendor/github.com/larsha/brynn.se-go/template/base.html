@@ -1,0 +1,17 @@
+{{define "base"}}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,900">
+    <link rel="stylesheet" href="{{.Globals.Static}}/css/style.bundle.css">
+    <link rel="shortcut icon" href="{{.Globals.Static}}/img/favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Software Developer in Stockholm</title>
+    <meta name="description" content="I'm a freelancing software developer working and living in Stockholm, Sweden.">
+  </head>
+  <body>
+    {{template "content" .}}
+    <script src="{{.Globals.Static}}/js/main.bundle.js"></script>
+  </body>
+</html>
+{{end}}

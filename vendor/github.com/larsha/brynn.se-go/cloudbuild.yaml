@@ -7,6 +7,11 @@ steps:
   args: ['run', 'bundle']
 
 - name: 'gcr.io/cloud-builders/go'
+  args: ['get']
+  env:
+  - 'PROJECT_ROOT=web'
+
+- name: 'gcr.io/cloud-builders/go'
   args: ['test']
   env:
   - 'PROJECT_ROOT=web'

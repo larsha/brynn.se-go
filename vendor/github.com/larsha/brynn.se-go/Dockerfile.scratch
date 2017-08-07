@@ -1,0 +1,9 @@
+FROM scratch
+ADD . /
+ADD main /
+ADD ca-certificates.crt /etc/ssl/certs/
+ARG STATIC=0
+ENV STATIC ${STATIC}
+WORKDIR /
+
+CMD ["/main"]
