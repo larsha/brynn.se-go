@@ -9,7 +9,6 @@ steps:
 - name: 'gcr.io/cloud-builders/go'
   args: ['test']
   env:
-  - 'GOPATH=/dev/go'
   - 'PROJECT_ROOT=github.com/larsha/brynn.se-go'
 
 - name: 'gcr.io/cloud-builders/gsutil'
@@ -23,7 +22,6 @@ steps:
 - name: 'gcr.io/cloud-builders/go'
   args: ['build', '-a', '-installsuffix', 'cgo', '-o', 'main', '.']
   env:
-  - 'GOPATH=/dev/go'
   - 'PROJECT_ROOT=github.com/larsha/brynn.se-go'
   - 'CGO_ENABLED=0'
   - 'GOOS=linux'
