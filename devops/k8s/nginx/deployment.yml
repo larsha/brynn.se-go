@@ -15,6 +15,7 @@ spec:
     metadata:
       labels:
         app: nginx
+        nginx: brynnse-nginx
     spec:
       affinity:
         podAntiAffinity:
@@ -23,10 +24,10 @@ spec:
             podAffinityTerm:
               labelSelector:
                 matchExpressions:
-                - key: app
+                - key: nginx
                   operator: In
                   values:
-                  - nginx
+                  - brynnse-nginx
               topologyKey: kubernetes.io/hostname
       terminationGracePeriodSeconds: 60
       nodeSelector:

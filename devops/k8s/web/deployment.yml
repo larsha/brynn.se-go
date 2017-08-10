@@ -15,6 +15,7 @@ spec:
     metadata:
       labels:
         app: web
+        web: brynnse-web
     spec:
       affinity:
         podAntiAffinity:
@@ -23,10 +24,10 @@ spec:
             podAffinityTerm:
               labelSelector:
                 matchExpressions:
-                - key: app
+                - key: web
                   operator: In
                   values:
-                  - web
+                  - brynnse-web
               topologyKey: kubernetes.io/hostname
       containers:
       - name: web
