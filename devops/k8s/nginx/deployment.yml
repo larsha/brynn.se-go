@@ -8,7 +8,6 @@ spec:
   replicas: 2
   strategy:
     rollingUpdate:
-      maxSurge: 2
       maxUnavailable: 0
     type: RollingUpdate
   template:
@@ -44,14 +43,14 @@ spec:
         - containerPort: 80
         readinessProbe:
           httpGet:
-            path: /healthz
+            path: /ready
             port: 80
           periodSeconds: 1
           successThreshold: 1
           failureThreshold: 1
         livenessProbe:
           httpGet:
-            path: /healthz
+            path: /ready
             port: 80
           periodSeconds: 10
           successThreshold: 1

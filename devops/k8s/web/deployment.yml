@@ -5,10 +5,10 @@ metadata:
   namespace: brynnse
 spec:
   revisionHistoryLimit: 2
-  replicas: 4
+  replicas: 5
   strategy:
     rollingUpdate:
-      maxSurge: 4
+      maxSurge: 50%
       maxUnavailable: 0
     type: RollingUpdate
   template:
