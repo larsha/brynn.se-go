@@ -66,7 +66,7 @@ func isReady(s *status) func(http.ResponseWriter, *http.Request, httprouter.Para
 		if s.ready {
 			w.WriteHeader(http.StatusOK)
 		} else {
-			w.WriteHeader(http.StatusInternalServerError)
+			w.WriteHeader(http.StatusServiceUnavailable)
 		}
 	}
 }
