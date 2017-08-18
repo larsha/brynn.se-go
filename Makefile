@@ -16,4 +16,4 @@ deploy_nginx:
 	gcloud docker -- push $(latest)
 	gcloud docker -- push $(image)
 
-	kubectl -n brynnse set image deployment/nginx nginx=$(image)
+	kubectl -n brynnse set image ds/nginx nginx=$(image)
