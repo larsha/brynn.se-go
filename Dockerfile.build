@@ -1,13 +1,6 @@
 FROM golang:1.9
 
-COPY . /go/src/github.com/larsha/brynn.se-go
-WORKDIR /go/src/github.com/larsha/brynn.se-go
-
 ENV CGO_ENABLED 0
 ENV GOOS linux
-
-RUN go test
-
-RUN curl -o ca-certificates.crt https://raw.githubusercontent.com/bagder/ca-bundle/master/ca-bundle.crt
 
 CMD ["go", "build", "-a", "-installsuffix", "cgo", "-o", "main", "."]
