@@ -15,7 +15,7 @@ steps:
   args: ['build', '-t', 'build', '-f', 'Dockerfile.build', '.']
 
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['run', '-v', '`pwd`:/go/src/github.com/larsha/brynn.se-go', 'build']
+  args: ['run', '-v', '$(pwd):/go/src/github.com/larsha/brynn.se-go', 'build']
 
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build', '--build-arg', 'STATIC=https://storage.googleapis.com/$PROJECT_ID/brynnse/$REVISION_ID/static', '-t', 'eu.gcr.io/$PROJECT_ID/brynnse/web:$REVISION_ID', '-t', 'eu.gcr.io/$PROJECT_ID/brynnse/web:latest', '-f', 'Dockerfile.prod', '.']
