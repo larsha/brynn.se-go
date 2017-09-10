@@ -3,7 +3,7 @@ services:
   base:
     build:
       context: .
-      dockerfile: Dockerfile.web
+      dockerfile: Dockerfile.dev
     ports:
       - "3000:3000"
       - "3001:3001"
