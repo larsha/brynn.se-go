@@ -18,7 +18,7 @@ steps:
   args: ['build', '-t', 'build', '-f', 'Dockerfile.build', '.']
 
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['run', '-v', '/workspace:/go/src/github.com/larsha/brynn.se-go', '-w', '/go/src/github.com/larsha/brynn.se-go', 'go', 'test']
+  args: ['run', '-v', '/workspace:/go/src/github.com/larsha/brynn.se-go', '-w', '/go/src/github.com/larsha/brynn.se-go', 'build', 'go', 'test']
 
 - name: 'gcr.io/cloud-builders/docker'
   args: ['run', '-v', '/workspace:/go/src/github.com/larsha/brynn.se-go', '-w', '/go/src/github.com/larsha/brynn.se-go', 'build']
