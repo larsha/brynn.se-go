@@ -15,8 +15,24 @@ spec:
     hosts:
       - brynn.se
       - www.brynn.se
+      - www.lack.com.se
+      - lack.com.se
   rules:
   - host: brynn.se
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: nginx
+          servicePort: 80
+  - host: lack.com.se
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: nginx
+          servicePort: 80
+  - host: www.lack.com.se
     http:
       paths:
       - path: /
