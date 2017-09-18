@@ -15,8 +15,8 @@ spec:
     hosts:
       - brynn.se
       - www.brynn.se
-      - www.lack.com.se
-      - lack.com.se
+      - www.fredriklack.se
+      - fredriklack.se
       - fre.la
       - www.fre.la
   rules:
@@ -41,14 +41,14 @@ spec:
         backend:
           serviceName: nginx
           servicePort: 80
-  - host: lack.com.se
+  - host: fredriklack.se
     http:
       paths:
       - path: /
         backend:
           serviceName: nginx
           servicePort: 80
-  - host: www.lack.com.se
+  - host: www.fredriklack.se
     http:
       paths:
       - path: /
