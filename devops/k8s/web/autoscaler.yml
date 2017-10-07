@@ -10,4 +10,4 @@ spec:
     name: web
   minReplicas: 4
   maxReplicas: 10
-  targetCPUUtilizationPercentage: 50
+  targetCPUUtilizationPercentage: 70

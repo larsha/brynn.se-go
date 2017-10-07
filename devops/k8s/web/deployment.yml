@@ -5,11 +5,11 @@ metadata:
   namespace: brynnse
 spec:
   revisionHistoryLimit: 2
-  replicas: 1
+  replicas: 4
   strategy:
     rollingUpdate:
       maxSurge: 50%
-      maxUnavailable: 0
+      maxUnavailable: 25%
     type: RollingUpdate
   template:
     metadata:
@@ -34,8 +34,11 @@ spec:
         image: eu.gcr.io/brynn-145714/brynnse/web:latest
         imagePullPolicy: Always
         resources:
+          requests:
+            cpu: "100m"
+            memory: "25Mi"
           limits:
-            cpu: "0.5"
+            cpu: "200m"
             memory: "50Mi"
         envFrom:
         - configMapRef:
