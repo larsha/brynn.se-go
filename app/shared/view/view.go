@@ -52,7 +52,7 @@ func (v *View) Render(w http.ResponseWriter) {
 	t, err := template.ParseFiles(tmpl, base)
 
 	if err != nil {
-		http.Error(w, "Template File Error: "+err.Error(), http.StatusInternalServerError)
+		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 

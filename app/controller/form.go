@@ -3,7 +3,6 @@ package controller
 import (
 	"encoding/json"
 	"fmt"
-	"log"
 	"net/http"
 
 	"github.com/larsha/brynn.se-go/app/shared/config"
@@ -21,19 +20,18 @@ type FormData struct {
 func FormPOST(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	config := config.Get()
 	decoder := json.NewDecoder(r.Body)
-	var d FormData
+	d := FormData{}
 	err := decoder.Decode(&d)
-
-	if err != nil {
-		log.Fatal(err)
-		http.Error(w, err.Error(), 500)
-		return
-	}
 
 	defer r.Body.Close()
 
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
 	if d.Email == "" || d.Message == "" {
-		http.Error(w, "", 422)
+		http.Error(w, "", http.StatusBadRequest)
 		return
 	}
 
@@ -51,8 +49,7 @@ func FormPOST(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	resp, id, err := mg.Send(message)
 
 	if err != nil {
-		fmt.Println(err.Error())
-		http.Error(w, err.Error(), 500)
+		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 

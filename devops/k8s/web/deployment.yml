@@ -5,7 +5,7 @@ metadata:
   namespace: brynnse
 spec:
   revisionHistoryLimit: 2
-  replicas: 5
+  replicas: 1
   strategy:
     rollingUpdate:
       maxSurge: 50%
@@ -33,6 +33,10 @@ spec:
       - name: web
         image: eu.gcr.io/brynn-145714/brynnse/web:latest
         imagePullPolicy: Always
+        resources:
+          limits:
+            cpu: "0.5"
+            memory: "50Mi"
         envFrom:
         - configMapRef:
             name: web-v2
