@@ -1,7 +1,7 @@
 FROM golang:1.9
 
-COPY . /go/src/github.com/larsha/brynn.se-go
-WORKDIR /go/src/github.com/larsha/brynn.se-go
+COPY . /go/src/github.com/larsha/fre.la
+WORKDIR /go/src/github.com/larsha/fre.la
 
 RUN go get ./
 RUN go get -u -v github.com/codeskyblue/fswatch

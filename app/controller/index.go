@@ -3,7 +3,7 @@ package controller
 import (
 	"net/http"
 
-	"github.com/larsha/brynn.se-go/app/shared/view"
+	"github.com/larsha/fre.la/app/shared/view"
 
 	"github.com/julienschmidt/httprouter"
 )

@@ -18,10 +18,10 @@ steps:
   args: ['build', '-t', 'build', '-f', 'Dockerfile.build', '.']
 
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['run', '-v', '/workspace:/go/src/github.com/larsha/brynn.se-go', '-w', '/go/src/github.com/larsha/brynn.se-go', 'build', 'go', 'test']
+  args: ['run', '-v', '/workspace:/go/src/github.com/larsha/fre.la', '-w', '/go/src/github.com/larsha/fre.la', 'build', 'go', 'test']
 
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['run', '-v', '/workspace:/go/src/github.com/larsha/brynn.se-go', '-w', '/go/src/github.com/larsha/brynn.se-go', 'build']
+  args: ['run', '-v', '/workspace:/go/src/github.com/larsha/fre.la', '-w', '/go/src/github.com/larsha/fre.la', 'build']
 
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build', '--build-arg', 'STATIC=https://storage.googleapis.com/$PROJECT_ID/brynnse/$REVISION_ID/static', '-t', 'eu.gcr.io/$PROJECT_ID/brynnse/web:$REVISION_ID', '-t', 'eu.gcr.io/$PROJECT_ID/brynnse/web:latest', '-f', 'Dockerfile.prod', '.']

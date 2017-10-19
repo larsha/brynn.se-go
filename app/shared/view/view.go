@@ -6,7 +6,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/larsha/brynn.se-go/app/shared/config"
+	"github.com/larsha/fre.la/app/shared/config"
 )
 
 type GlobalContext struct {

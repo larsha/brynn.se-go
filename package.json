@@ -1,5 +1,5 @@
 {
-  "name": "brynn.se-go",
+  "name": "frela",
   "version": "2.2.0",
   "main": "ui/main.js",
   "engines": {
@@ -7,12 +7,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/larsha/brynn.se-go.git"
+    "url": "git+https://github.com/larsha/fre.la.git"
   },
-  "author": "Fredrik Lack <fredrik@brynn.se>",
+  "author": "Fredrik Lack <fredrik@fre.la>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/larsha/brynn.se-go/issues"
+    "url": "https://github.com/larsha/fre.la/issues"
   },
   "scripts": {
     "test": "echo \"Warning: no test specified\" && exit 0",

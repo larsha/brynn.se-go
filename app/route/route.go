@@ -3,9 +3,9 @@ package route
 import (
 	"net/http"
 
-	"github.com/larsha/brynn.se-go/app/controller"
-	"github.com/larsha/brynn.se-go/app/route/middleware/logrequest"
-	"github.com/larsha/brynn.se-go/app/shared/config"
+	"github.com/larsha/fre.la/app/controller"
+	"github.com/larsha/fre.la/app/route/middleware/logrequest"
+	"github.com/larsha/fre.la/app/shared/config"
 
 	"github.com/julienschmidt/httprouter"
 )

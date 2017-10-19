@@ -1,3 +1,3 @@
-# brynn.se-go
+# fre.la
 
-Rewrite of https://brynn.se from `Node.js` to `Go`.
+Company site built in Go

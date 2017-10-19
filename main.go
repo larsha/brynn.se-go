@@ -11,7 +11,7 @@ import (
 	"time"
 
 	"github.com/julienschmidt/httprouter"
-	"github.com/larsha/brynn.se-go/app/route"
+	"github.com/larsha/fre.la/app/route"
 )
 
 type status struct {

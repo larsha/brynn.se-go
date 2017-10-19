@@ -10,4 +10,4 @@ services:
     env_file:
       - web.env
     volumes:
-      - .:/go/src/github.com/larsha/brynn.se-go
+      - .:/go/src/github.com/larsha/fre.la

@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/larsha/brynn.se-go/app/shared/config"
+	"github.com/larsha/fre.la/app/shared/config"
 
 	"github.com/julienschmidt/httprouter"
 	"gopkg.in/mailgun/mailgun-go.v1"
