@@ -1,15 +1,13 @@
 apiVersion: extensions/v1beta1
-kind: Deployment
+kind: DaemonSet
 metadata:
   name: nginx
   namespace: frela
 spec:
   revisionHistoryLimit: 2
-  replicas: 2
-  strategy:
+  updateStrategy:
     rollingUpdate:
-      maxSurge: 50%
-      maxUnavailable: 25%
+      maxUnavailable: 1
     type: RollingUpdate
   template:
     metadata:
@@ -17,22 +15,10 @@ spec:
         app: nginx
         nginx: frela-nginx
     spec:
-      affinity:
-        podAntiAffinity:
-          preferredDuringSchedulingIgnoredDuringExecution:
-          - weight: 100
-            podAffinityTerm:
-              labelSelector:
-                matchExpressions:
-                - key: nginx
-                  operator: In
-                  values:
-                  - frela-nginx
-              topologyKey: kubernetes.io/hostname
       terminationGracePeriodSeconds: 60
       containers:
       - name: nginx
-        image: eu.gcr.io/brynn-145714/brynnse/nginx:latest
+        image: eu.gcr.io/brynn-145714/frela/nginx:latest
         lifecycle:
           preStop:
             exec:
