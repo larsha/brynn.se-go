@@ -2,7 +2,7 @@ apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
 metadata:
   name: web
-  namespace: brynnse
+  namespace: frela
 spec:
   scaleTargetRef:
     apiVersion: apps/v1beta1

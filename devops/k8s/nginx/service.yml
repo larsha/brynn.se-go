@@ -2,11 +2,12 @@ apiVersion: v1
 kind: Service
 metadata:
   name: nginx
-  namespace: brynnse
+  namespace: frela
 spec:
   ports:
-  - port: 80
+  - port: 8081
     targetPort: 80
     protocol: TCP
+  type: NodePort
   selector:
     app: nginx

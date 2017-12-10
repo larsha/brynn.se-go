@@ -2,7 +2,7 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: web
-  namespace: brynnse
+  namespace: frela
 spec:
   revisionHistoryLimit: 2
   replicas: 4
@@ -15,7 +15,7 @@ spec:
     metadata:
       labels:
         app: web
-        web: brynnse-web
+        web: frela-web
     spec:
       affinity:
         podAntiAffinity:
@@ -27,7 +27,7 @@ spec:
                 - key: web
                   operator: In
                   values:
-                  - brynnse-web
+                  - frela-web
               topologyKey: kubernetes.io/hostname
       containers:
       - name: web
@@ -42,7 +42,7 @@ spec:
             memory: "50Mi"
         envFrom:
         - configMapRef:
-            name: web-v2
+            name: web
         ports:
         - containerPort: 3000
         - containerPort: 3001

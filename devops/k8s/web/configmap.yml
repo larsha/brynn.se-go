@@ -1,12 +1,8 @@
 kind: ConfigMap
 apiVersion: v1
 metadata:
-  name: web-v2
-  namespace: brynnse
+  name: web
+  namespace: frela
 data:
   APP_ENV: production
   PORT: "3000"
-  MAILGUN_EMAIL:
-  MAILGUN_DOMAIN:
-  MAILGUN_API_KEY:
-  MAILGUN_PUBLIC_API_KEY:
