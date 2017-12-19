@@ -16,4 +16,4 @@ deploy_nginx:
 	gcloud docker -- push $(latest)
 	gcloud docker -- push $(image)
 
-	kubectl -n frela set image deployment/nginx nginx=$(image)
+	kubectl -n frela set image ds/nginx nginx=$(image)
