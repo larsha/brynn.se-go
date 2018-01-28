@@ -1,0 +1,29 @@
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+  name: frela-crt-prod
+  namespace: frela
+spec:
+  secretName: frela-crt-secret-prod
+  commonName: fre.la
+  dnsNames:
+  - fre.la
+  - fredriklack.se
+  - brynn.se
+  - www.fre.la
+  - www.fredriklack.se
+  - www.brynn.se
+  acme:
+    config:
+    - dns01:
+        provider: clouddns
+      domains:
+      - fre.la
+      - www.fre.la
+      - brynn.se
+      - www.brynn.se
+      - www.fredriklack.se
+      - fredriklack.se
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer

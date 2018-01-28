@@ -5,18 +5,10 @@ metadata:
   namespace: frela
   annotations:
     kubernetes.io/ingress.global-static-ip-name: "frela-ipv4"
-    kubernetes.io/tls-acme: "true"
     kubernetes.io/ingress.class: "gce"
 spec:
   tls:
-  - secretName: frela-tls
-    hosts:
-      - brynn.se
-      - www.brynn.se
-      - www.fredriklack.se
-      - fredriklack.se
-      - fre.la
-      - www.fre.la
+  - secretName: frela-crt-secret-prod
   rules:
   - host: www.fre.la
     http:
