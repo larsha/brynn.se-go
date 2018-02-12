@@ -27,7 +27,7 @@ func Get() Config {
 			ApiKey:       os.Getenv("MAILGUN_API_KEY"),
 			PublicApiKey: os.Getenv("MAILGUN_PUBLIC_API_KEY"),
 			Email:        os.Getenv("MAILGUN_EMAIL"),
-			Subject:      "Hello from brynn.se!",
+			Subject:      "Hello from fre.la!",
 		},
 	}
 

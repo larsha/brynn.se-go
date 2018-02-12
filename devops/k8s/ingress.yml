@@ -24,13 +24,6 @@ spec:
         backend:
           serviceName: nginx
           servicePort: 8081
-  - host: brynn.se
-    http:
-      paths:
-      - path: /*
-        backend:
-          serviceName: nginx
-          servicePort: 8081
   - host: fredriklack.se
     http:
       paths:
@@ -39,13 +32,6 @@ spec:
           serviceName: nginx
           servicePort: 8081
   - host: www.fredriklack.se
-    http:
-      paths:
-      - path: /*
-        backend:
-          serviceName: nginx
-          servicePort: 8081
-  - host: www.brynn.se
     http:
       paths:
       - path: /*

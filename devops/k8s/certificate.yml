@@ -9,10 +9,8 @@ spec:
   dnsNames:
   - fre.la
   - fredriklack.se
-  - brynn.se
   - www.fre.la
   - www.fredriklack.se
-  - www.brynn.se
   acme:
     config:
     - dns01:
@@ -20,8 +18,6 @@ spec:
       domains:
       - fre.la
       - www.fre.la
-      - brynn.se
-      - www.brynn.se
       - www.fredriklack.se
       - fredriklack.se
   issuerRef:
